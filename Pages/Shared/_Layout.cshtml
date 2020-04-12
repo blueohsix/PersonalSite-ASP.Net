@@ -3,19 +3,26 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="Casey Asher, Tulsa, Development, Web Developer, Java, C#, dotnet, .Net, ASP.Net, Full-Stack,
+    Oklahoma, OK" />
+    <meta name="Description" content="Full-Stack Web Developer from Tulsa, Oklahoma">
+    <meta property="og:description" content="Full-Stack Web Developer from Tulsa, Oklahoma" />
+    <meta property="og:site_name" content="Casey Asher - Developer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Casey Asher - @ViewData["Title"]</title>
+    <link rel="canonical" href="https://caseyasher.info/" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2019.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2018.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-metro.css">
     <script async defer data-domain="caseyasher.info" src="https://plausible.io/js/plausible.js"></script>
 </head>
 <body class="w3-2019-evening-blue">
     <header>
         <div class="w3-bar w3-2018-tofu w3-xlarge">
-            <a class="w3-bar-item w3-button" asp-area="" asp-page="/Index"><strong>Casey Asher</strong> - Developer</a>
-            <a class="w3-bar-item w3-button" asp-area="" asp-page="/Index">Home</a>
-            <a class="w3-bar-item w3-button" asp-area="" asp-page="/Projects">Projects</a>
-            <a class="w3-bar-item w3-button" asp-area="" asp-page="/Contact">Contact</a>
+            <a class="w3-bar-item w3-button w3-mobile" asp-area="" asp-page="/Index">Projects</a>
+            <a class="w3-bar-item w3-button w3-mobile" asp-area="" asp-page="/Contact">Contact</a>
+            <a class="w3-bar-item w3-right w3-mobile"><strong>Casey Asher</strong>, a Full-Stack Developer in Tulsa, Oklahoma</a>
         </div>
     </header>
     <div class="container">
@@ -23,10 +30,9 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="w3-display-bottomright w3-padding">
-        <div class="container" style="position:absolute">
-            &copy; 2020 - Casey Asher - <a asp-area="" asp-page="/Privacy">contact</a>
+    <footer>
+        <div style="position:fixed; right:1%; bottom:.5%">
+            &copy; 2020 - Casey Asher - <a asp-area="" asp-page="/Contact">contact</a>
         </div>
     </footer>
 

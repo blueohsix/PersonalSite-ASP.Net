@@ -11,4 +11,7 @@
 
 
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\images\" />
+  </ItemGroup>
 </Project>
