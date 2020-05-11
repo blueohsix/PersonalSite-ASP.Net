@@ -1,0 +1,37 @@
+﻿@page
+@model TicTacToeModel
+@{
+    ViewData["Title"] = "TicTacToe";
+}
+
+<h1>TicTacToe</h1>
+
+<div id="boardSize">
+    <form asp-page-handler="size" method="post">
+        <input type="radio" id="3x3" name="size" value="3" />
+        <label for="3x3">3x3</label><br />
+        <input type="radio" id="4x4" name="size" value="4" />
+        <label for="4x4">4x4</label><br />
+        <input type="radio" id="5x5" name="size" value="5" />
+        <label for="5x5">5x5</label><br />
+        <input type="submit" class="w3-button w3-green" />
+    </form>
+</div>
+<br />
+
+@if (Model.PlaySurface.Height > 0)
+{
+    <table id="board" class="w3-table w3-jumbo w3-mobile">
+        @for (int i = 0; i < Model.PlaySurface.Width; i++)
+        {
+            <tr>
+                @for (int j = 0; j < Model.PlaySurface.Height; j++)
+                {
+                    <td class="w3-border w3-center w3-hover-sand">
+                        @Model.PlaySurface.Grid[i, j]
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+}

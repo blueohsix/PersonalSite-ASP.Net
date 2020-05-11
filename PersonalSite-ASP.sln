@@ -1,7 +1,8 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalSite-ASP", "PersonalSite-ASP.csproj", "{48EC6DF3-CE20-4622-BAA1-A8ABC0CFC502}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalSite-ASP", "PersonalSite-ASP.csproj", "{48EC6DF3-CE20-4622-BAA1-A8ABC0CFC502}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,5 +14,11 @@ Global
 		{48EC6DF3-CE20-4622-BAA1-A8ABC0CFC502}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48EC6DF3-CE20-4622-BAA1-A8ABC0CFC502}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48EC6DF3-CE20-4622-BAA1-A8ABC0CFC502}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A51828A8-5A54-4BF4-8E1F-796CF5AA8859}
 	EndGlobalSection
 EndGlobal
