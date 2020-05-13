@@ -1,4 +1,6 @@
 using System;
+using System.Net;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.CodeAnalysis;
@@ -14,17 +16,26 @@ namespace PersonalSite_ASP.Pages
         {
             PlaySurface = new Board(3);
             var JSON = JsonConvert.SerializeObject(PlaySurface);
-            Response.Cookies.Append("PlaySurface", JSON);
+            Response.Cookies.Append("BoardState", JSON);
+
         }
         public void OnPostSize(int size)
         {
-            PlaySurface = new Board(size);
+            if (size == 0)
+            {
+                JsonConvert.PopulateObject(Request.Cookies["BoardState"], PlaySurface = new Board());
+                PlaySurface.InitializeBoardValues(PlaySurface.Height);
+            }
+            else
+            {
+                PlaySurface = new Board(size);
+            }
             var JSON = JsonConvert.SerializeObject(PlaySurface);
-            Response.Cookies.Append("PlaySurface", JSON);
+            Response.Cookies.Append("BoardState", JSON);
         }
         public void OnPostCell(string location)
         {
-            JsonConvert.PopulateObject(Request.Cookies["PlaySurface"], PlaySurface = new Board());
+            JsonConvert.PopulateObject(Request.Cookies["BoardState"], PlaySurface = new Board());
             if (ValidateMove(PlaySurface, location))
             {
                 var XorO = PlaySurface.XTurn ? "X" : "O";
@@ -34,7 +45,7 @@ namespace PersonalSite_ASP.Pages
                 PlaySurface.XTurn = !PlaySurface.XTurn;
             }
             var JSON = JsonConvert.SerializeObject(PlaySurface);
-            Response.Cookies.Append("PlaySurface", JSON);
+            Response.Cookies.Append("BoardState", JSON);
         }
         public bool ValidateMove(Board PlaySurface, string move)
         {

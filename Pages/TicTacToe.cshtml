@@ -3,50 +3,49 @@
 @{
     ViewData["Title"] = "TicTacToe";
 }
-<div class="w3-container">
+<div class="w3-row">
     <h1>TicTacToe</h1>
-    <p>
-        This game utlizes a cookie named PlaySurface that stores the state of the board below.
-        This cookie is updated every turn and is discarded when you leave this page. The information
-        contained within this cookie is the board's height, width, if it's X's or O's turn, and a
-        two-dimensional array of the grid with two fields per square: location and symbol.
-        By playing this game, you accept the use of this cookie.
-    </p>
-</div>
-
-<br />
-
-@if (Model.PlaySurface.Height > 0)
-{
-    <div class="w3-padding">
-        <table id="board" class="w3-table w3-xlarge w3-mobile">
-            @for (int i = 0; i < Model.PlaySurface.Width; i++)
-            {
-                <tr>
-                    @for (int j = 0; j < Model.PlaySurface.Height; j++)
-                    {
-                        <td class="w3-border w3-center">
-                            <form asp-page-handler="cell" method="post">
-                                <input type="hidden" name="location" value="@Model.PlaySurface.Grid[i,j].Location" />
-                                <input type="submit" class="w3-button w3-xlarge w3-hover-sand w3-padding"
-                                       value="@Model.PlaySurface.Grid[i,j].Symbol" />
-                            </form>
-                        </td>
-                    }
-                </tr>
-            }
-        </table>
+    @if (Model.PlaySurface.Height > 0)
+    {
+        <div class="w3-container w3-col s12 m6 l4 w3-padding">
+            <table id="board" class="w3-table">
+                @for (int i = 0; i < Model.PlaySurface.Width; i++)
+                {
+                    <tr>
+                        @for (int j = 0; j < Model.PlaySurface.Height; j++)
+                        {
+                            <td class="w3-border w3-center">
+                                <form asp-page-handler="cell" method="post">
+                                    <input type="hidden" name="location" value="@Model.PlaySurface.Grid[i,j].Location" />
+                                    <input type="submit" class="w3-button w3-xlarge w3-hover-sand w3-padding"
+                                           value="@Model.PlaySurface.Grid[i,j].Symbol" />
+                                </form>
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+    <div id="boardSize" class="w3-container w3-col s12 m6 l4 w3-padding w3-center">
+        <label><strong>Board Size</strong></label>
+        <form asp-page-handler="size" method="post">
+            <input type="radio" id="3x3" name="size" value="3" />
+            <label for="3x3">3x3</label><br />
+            <input type="radio" id="4x4" name="size" value="4" />
+            <label for="4x4">4x4</label><br />
+            <input type="radio" id="5x5" name="size" value="5" />
+            <label for="5x5">5x5</label><br />
+            <input type="submit" class="w3-button w3-green" value="Reset Board" />
+        </form>
     </div>
-}
-<br />
-<div id="boardSize" class="w3-container">
-    <form asp-page-handler="size" method="post">
-        <input type="radio" id="3x3" name="size" value="3" />
-        <label for="3x3">3x3</label><br />
-        <input type="radio" id="4x4" name="size" value="4" />
-        <label for="4x4">4x4</label><br />
-        <input type="radio" id="5x5" name="size" value="5" />
-        <label for="5x5">5x5</label><br />
-        <input type="submit" class="w3-button w3-green" />
-    </form>
+    <div class="w3-container w3-col s12 m6 l4 w3-margin-bottom">
+        <p>
+            This game utlizes a cookie named BoardState that stores the current state of the board.
+            This cookie is updated every turn and is discarded when your browser is closed. The information
+            contained within this cookie is the board's height, width, if it's X's or O's turn, and a
+            two-dimensional array of the grid with two fields per square: location and symbol.
+            By playing this game, you accept the use of this cookie.
+        </p>
+    </div>
 </div>
