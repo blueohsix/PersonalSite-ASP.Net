@@ -24,7 +24,7 @@ namespace PersonalSite_ASP.Pages
             if (size == 0)
             {
                 JsonConvert.PopulateObject(Request.Cookies["BoardState"], PlaySurface = new Board());
-                PlaySurface.InitializeBoardValues(PlaySurface.Height);
+                PlaySurface = new Board(PlaySurface.Height);
             }
             else
             {
