@@ -6,7 +6,7 @@
 
 <h1>TicTacToe</h1>
 
-<div id="boardSize">
+<div id="boardSize" class="w3-container">
     <form asp-page-handler="size" method="post">
         <input type="radio" id="3x3" name="size" value="3" />
         <label for="3x3">3x3</label><br />
@@ -18,20 +18,27 @@
     </form>
 </div>
 <br />
+<br />
 
 @if (Model.PlaySurface.Height > 0)
 {
-    <table id="board" class="w3-table w3-jumbo w3-mobile">
-        @for (int i = 0; i < Model.PlaySurface.Width; i++)
-        {
-            <tr>
-                @for (int j = 0; j < Model.PlaySurface.Height; j++)
-                {
-                    <td class="w3-border w3-center w3-hover-sand">
-                        @Model.PlaySurface.Grid[i, j]
-                    </td>
-                }
-            </tr>
-        }
-    </table>
+    <div class="w3-padding">
+        <table id="board" class="w3-table w3-xlarge w3-mobile">
+            @for (int i = 0; i < Model.PlaySurface.Width; i++)
+            {
+                <tr>
+                    @for (int j = 0; j < Model.PlaySurface.Height; j++)
+                    {
+                        <td class="w3-border w3-center">
+                            <form asp-page-handler="cell" method="post">
+                                <input type="hidden" name="location" value="@Model.PlaySurface.Grid[i,j].Location" />
+                                <input type="submit" class="w3-button w3-xlarge w3-hover-sand w3-padding"
+                                       value="@Model.PlaySurface.Grid[i,j].Symbol" />
+                            </form>
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
 }
