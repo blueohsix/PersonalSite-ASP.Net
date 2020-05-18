@@ -28,24 +28,24 @@
         </div>
     }
     <div id="boardSize" class="w3-container w3-col s12 m6 l4 w3-padding w3-center">
-        <label><strong>Board Size</strong></label>
+        @*<label><strong>Board Size</strong></label>*@
         <form asp-page-handler="size" method="post">
-            <input type="radio" id="3x3" name="size" value="3" />
+            @*<input type="radio" id="3x3" name="size" value="3" />
             <label for="3x3">3x3</label><br />
             <input type="radio" id="4x4" name="size" value="4" />
             <label for="4x4">4x4</label><br />
             <input type="radio" id="5x5" name="size" value="5" />
-            <label for="5x5">5x5</label><br />
+            <label for="5x5">5x5</label><br />*@
             <input type="submit" class="w3-button w3-green" value="Reset Board" />
         </form>
     </div>
     <div class="w3-container w3-col s12 m6 l4 w3-margin-bottom">
         <p>
-            This game utlizes a cookie named BoardState that stores the current state of the board.
-            This cookie is updated every turn and is discarded when your browser is closed. The information
-            contained within this cookie is the board's height, width, if it's X's or O's turn, and a
-            two-dimensional array of the grid with two fields per square: location and symbol.
-            By playing this game, you accept the use of this cookie.
+            This game is built in an ASP.Net Core Razor Page. The board is updated via handler methods which utilize
+            a cookie named BoardState that stores the current state of the board. <br /> This cookie is updated every turn 
+            and is discarded when your browser is closed. The information contained within this cookie is the 
+            board's height, width, if it's X's or O's turn, and a two-dimensional array of the grid with two fields 
+            per square: location and symbol. By playing this game, you accept the use of this cookie.
         </p>
     </div>
 </div>
