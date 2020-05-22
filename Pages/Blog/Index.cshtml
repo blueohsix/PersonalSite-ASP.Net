@@ -2,6 +2,7 @@
 @model PersonalSite_ASP.Pages.Blog.IndexModel
 
 @{
+    Layout = "~/Pages/Shared/_BlogLayout.cshtml";
     ViewData["Title"] = "Index";
 }
 
@@ -29,29 +30,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Post) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @item.Body
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Body)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.TimePosted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeEdited)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Post)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Body)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimePosted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeEdited)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -10,6 +10,7 @@ using PersonalSite_ASP.Data.Blog;
 
 namespace PersonalSite_ASP.Pages.Blog
 {
+
     public class CreateModel : PageModel
     {
         private readonly PersonalSite_ASP.Data.PersonalSite_ASPContext _context;
