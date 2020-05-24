@@ -12,7 +12,7 @@ namespace PersonalSite_ASP.Data.Blog
         public string Body { get; set; }
         public DateTime TimePosted { get; set; }
         public DateTime TimeEdited { get; set; }
-
+        
         public Post(string title, string body)
         {
             this.Title = title;

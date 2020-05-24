@@ -8,7 +8,15 @@
 
 <h1>Edit</h1>
 
-<h4>Post</h4>
+<div>
+    <span class="w3-large w3-left">
+        Post
+    </span>
+    <span>
+        <a class="w3-right" asp-page="./AllPosts">Back to All</a>
+    </span>
+</div>
+<br />
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -21,30 +29,16 @@
                 <span asp-validation-for="Post.Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Post.Body" class="control-label"></label>
-                <input asp-for="Post.Body" class="form-control" />
+                <textarea wrap="soft" cols="110" rows="20" asp-for="Post.Body" class="form-control"></textarea>
                 <span asp-validation-for="Post.Body" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Post.TimePosted" class="control-label"></label>
-                <input asp-for="Post.TimePosted" class="form-control" />
-                <span asp-validation-for="Post.TimePosted" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Post.TimeEdited" class="control-label"></label>
-                <input asp-for="Post.TimeEdited" class="form-control" />
-                <span asp-validation-for="Post.TimeEdited" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="w3-button w3-green w3-right" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

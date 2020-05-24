@@ -37,6 +37,7 @@ namespace PersonalSite_ASP.Pages.Blog
                 return Page();
             }
             Post.TimePosted = DateTime.Now;
+            Post.TimeEdited = DateTime.Now; 
             _context.Post.Add(Post);
             await _context.SaveChangesAsync();
 

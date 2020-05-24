@@ -29,7 +29,6 @@ namespace PersonalSite_ASP.Pages.Blog
             {
                 return NotFound();
             }
-
             Post = await _context.Post.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Post == null)
@@ -47,9 +46,8 @@ namespace PersonalSite_ASP.Pages.Blog
             {
                 return Page();
             }
-
+            Post.TimeEdited = DateTime.Now;
             _context.Attach(Post).State = EntityState.Modified;
-
             try
             {
                 await _context.SaveChangesAsync();

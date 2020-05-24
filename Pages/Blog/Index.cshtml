@@ -2,55 +2,35 @@
 @model PersonalSite_ASP.Pages.Blog.IndexModel
 
 @{
+
     Layout = "~/Pages/Shared/_BlogLayout.cshtml";
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Post[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Post[0].Body)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Post[0].TimePosted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Post[0].TimeEdited)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Post)
+<h1>Most Recent Articles</h1>
+<div>
+    @foreach (var item in Model.Post.Reverse())
+    {
+        <h2>@item.Title</h2>
+        <h6>@item.TimePosted</h6>
+        @if(item.TimeEdited != item.TimePosted)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Body)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TimePosted)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TimeEdited)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
+            <h6>Edited at @item.TimeEdited</h6>
         }
-    </tbody>
-</table>
+        <div>
+            Admin abilities
+            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+        </div>
+        <div class="w3-container">
+            @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Body))
+        </div>
+    }
+</div>
+
+
+

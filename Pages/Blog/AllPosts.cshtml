@@ -1,0 +1,50 @@
+﻿@page
+@model PersonalSite_ASP.Pages.Blog.AllPostsModel
+@{
+    ViewData["Title"] = "AllPosts";
+    Layout = "~/Pages/Shared/_BlogLayout.cshtml";
+}
+
+<h1>AllPosts</h1>
+
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Post[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Post[0].TimePosted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Post[0].TimeEdited)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Post.Reverse())
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimePosted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeEdited)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
