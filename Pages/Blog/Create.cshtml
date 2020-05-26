@@ -1,0 +1,38 @@
+﻿@page
+@model PersonalSite_ASP.Pages.Blog.CreateModel
+
+@{
+    Layout = "~/Pages/Shared/_BlogLayout.cshtml";
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<div class="">
+    <div class="">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class=""></div>
+            <div class="">
+                <label asp-for="Post.Title" class=""></label>
+                <input asp-for="Post.Title" class="" />
+                <span asp-validation-for="Post.Title" class=""></span>
+            </div>
+            <div class="">
+                <label asp-for="Post.Body" class=""></label>
+                <textarea asp-for="Post.Body" class=""></textarea>
+                <span asp-validation-for="Post.Body" class=""></span>
+            </div>
+            <div class="">
+                <input type="submit" value="Create" class="w3-button w3-blue" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

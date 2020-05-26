@@ -1,0 +1,45 @@
+﻿@page
+@model PersonalSite_ASP.Pages.Blog.EditModel
+
+@{
+    Layout = "~/Pages/Shared/_BlogLayout.cshtml";
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<div>
+    <span class="w3-large w3-left">
+        Post
+    </span>
+    <span>
+        <a class="w3-right" asp-page="./AllPosts">Back to All</a>
+    </span>
+</div>
+<br />
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Post.Id" />
+            <div class="form-group">
+                <label asp-for="Post.Title" class="control-label"></label>
+                <input asp-for="Post.Title" class="form-control" />
+                <span asp-validation-for="Post.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <textarea wrap="soft" cols="110" rows="20" asp-for="Post.Body" class="form-control"></textarea>
+                <span asp-validation-for="Post.Body" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="w3-button w3-green w3-right" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,36 @@
+﻿@page
+@model PersonalSite_ASP.Pages.Blog.IndexModel
+
+@{
+
+    Layout = "~/Pages/Shared/_BlogLayout.cshtml";
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<h1>Most Recent Articles</h1>
+<div>
+    @foreach (var item in Model.Post.Reverse())
+    {
+        <h2>@item.Title</h2>
+        <h6>@item.TimePosted</h6>
+        @if(item.TimeEdited != item.TimePosted)
+        {
+            <h6>Edited at @item.TimeEdited</h6>
+        }
+        <div>
+            Admin abilities
+            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+        </div>
+        <div class="w3-container">
+            @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Body))
+        </div>
+    }
+</div>
+
+
+

@@ -1,0 +1,29 @@
+﻿@page
+@model PersonalSite_ASP.Pages.Blog.DetailsModel
+
+@{
+    Layout = "~/Pages/Shared/_BlogLayout.cshtml";
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Post</h4>
+    <hr />
+    <h2>@Model.Post.Title</h2>
+    <h6>@Model.Post.TimePosted</h6>
+    @if (Model.Post.TimeEdited != Model.Post.TimePosted)
+    {
+        <h6>Edited at @Model.Post.TimeEdited</h6>
+    }
+    <div>
+        Admin abilities
+        <a asp-page="./Edit" asp-route-id="@Model.Post.Id">Edit</a> |
+        <a asp-page="./Details" asp-route-id="@Model.Post.Id">Details</a> |
+        <a asp-page="./Delete" asp-route-id="@Model.Post.Id">Delete</a>
+    </div>
+    <div class="w3-container">
+        @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Post.Body))
+    </div>
+</div>
