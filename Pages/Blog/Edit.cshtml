@@ -6,23 +6,18 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<div>
-    <span class="w3-large w3-left">
-        Post
-    </span>
-    <span>
-        <a class="w3-right" asp-page="./AllPosts">Back to All</a>
-    </span>
-</div>
-<br />
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="w3-container w3-margin-top">
+    <div class="row">
+        <span>
+            <a class="w3-button w3-white w3-right" asp-page="./AllPosts">Back to All</a>
+        </span>
         <form method="post">
+            <span>
+                <input type="submit" value="Save" class="w3-button w3-green w3-right" />
+            </span>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Post.Id" />
+            <input type="hidden" asp-for="Post.TimePosted" />
             <div class="form-group">
                 <label asp-for="Post.Title" class="control-label"></label>
                 <input asp-for="Post.Title" class="form-control" />
@@ -31,9 +26,6 @@
             <div class="form-group">
                 <textarea wrap="soft" cols="110" rows="20" asp-for="Post.Body" class="form-control"></textarea>
                 <span asp-validation-for="Post.Body" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="w3-button w3-green w3-right" />
             </div>
         </form>
     </div>

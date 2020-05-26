@@ -1,29 +1,41 @@
 ﻿@page
 @model PersonalSite_ASP.Pages.Blog.DetailsModel
+@using Microsoft.AspNetCore.Identity
+@using PersonalSite_ASP.Data.Blog
+
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
 
 @{
     Layout = "~/Pages/Shared/_BlogLayout.cshtml";
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Model.Post.Title;
 }
 
-<h1>Details</h1>
-
 <div>
-    <h4>Post</h4>
-    <hr />
-    <h2>@Model.Post.Title</h2>
-    <h6>@Model.Post.TimePosted</h6>
-    @if (Model.Post.TimeEdited != Model.Post.TimePosted)
+    @if (SignInManager.IsSignedIn(User))
     {
-        <h6>Edited at @Model.Post.TimeEdited</h6>
+        <div class="w3-right">
+            <a asp-page="./Edit" asp-route-id="@Model.Post.Id">Edit</a> |
+            <a asp-page="./Details" asp-route-id="@Model.Post.Id">Details</a> |
+            <a asp-page="./Delete" asp-route-id="@Model.Post.Id">Delete</a> |
+            <a asp-page="./AllPosts">Back to All</a>
+        </div>
     }
     <div>
-        Admin abilities
-        <a asp-page="./Edit" asp-route-id="@Model.Post.Id">Edit</a> |
-        <a asp-page="./Details" asp-route-id="@Model.Post.Id">Details</a> |
-        <a asp-page="./Delete" asp-route-id="@Model.Post.Id">Delete</a>
-    </div>
-    <div class="w3-container">
-        @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Post.Body))
+        <a asp-page="./Details" asp-route-id="@Model.Post.Id" class="w3-center"><h2>@Model.Post.Title</h2></a>
+        @{
+            String Edited = "";
+
+            if (Model.Post.TimeEdited.CompareTo(Model.Post.TimePosted) > 0)
+            {
+                Edited = "| Updated at: " + Model.Post.TimeEdited.ToString("g") + " US Central";
+            }
+        }
+        <div class="w3-margin-bottom">
+            <em>Posted at @Model.Post.TimePosted.ToString("g") US Central @Edited </em>
+        </div>
+        <div id="PostBody @Model.Post.Id">
+            @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Post.Body))
+        </div>
     </div>
 </div>

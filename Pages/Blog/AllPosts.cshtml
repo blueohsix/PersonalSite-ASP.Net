@@ -5,13 +5,9 @@
     Layout = "~/Pages/Shared/_BlogLayout.cshtml";
 }
 
-<h1>AllPosts</h1>
+<h1>All Posts</h1>
 
-
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
+<table class="w3-table w3-border">
     <thead>
         <tr>
             <th>
@@ -40,9 +36,9 @@
                     @Html.DisplayFor(modelItem => item.TimeEdited)
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="w3-button w3-tiny w3-border" asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="w3-button w3-tiny w3-border" asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                    <a class="w3-button w3-tiny w3-border" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }
