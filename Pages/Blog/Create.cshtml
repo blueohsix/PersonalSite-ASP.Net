@@ -6,32 +6,30 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<div class="">
-    <div class="">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class=""></div>
-            <div class="">
-                <label asp-for="Post.Title" class=""></label>
-                <input asp-for="Post.Title" class="" />
-                <span asp-validation-for="Post.Title" class=""></span>
-            </div>
-            <div class="">
-                <label asp-for="Post.Body" class=""></label>
-                <textarea asp-for="Post.Body" class=""></textarea>
-                <span asp-validation-for="Post.Body" class=""></span>
-            </div>
-            <div class="">
-                <input type="submit" value="Create" class="w3-button w3-blue" />
-            </div>
-        </form>
+<div class="w3-container w3-margin-top">
+        <div class="row">
+            <span>
+                <a class="w3-button w3-white w3-right" asp-page="./AllPosts">Back to All</a>
+            </span>
+            <form method="post">
+                <span>
+                    <input type="submit" value="Create" class="w3-button w3-blue w3-right" />
+                </span>
+                <div asp-validation-summary="ModelOnly" class=""></div>
+                <div class="form-group">
+                    <label asp-for="Post.Title" class="control-label"></label>
+                    <input asp-for="Post.Title" class="form-control" />
+                    <span asp-validation-for="Post.Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <textarea wrap="soft" cols="110" rows="20" asp-for="Post.Body" class="form-control"></textarea>
+                    <span asp-validation-for="Post.Body" class="text-danger"></span>
+                </div>
+
+            </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

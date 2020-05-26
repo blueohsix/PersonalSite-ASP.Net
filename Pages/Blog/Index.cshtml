@@ -1,33 +1,49 @@
 ﻿@page
-@model PersonalSite_ASP.Pages.Blog.IndexModel
+@using Microsoft.AspNetCore.Identity
+@using PersonalSite_ASP.Data.Blog
 
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@model PersonalSite_ASP.Pages.Blog.IndexModel
 @{
 
     Layout = "~/Pages/Shared/_BlogLayout.cshtml";
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Articles";
+
 }
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
 <h1>Most Recent Articles</h1>
 <div>
     @foreach (var item in Model.Post.Reverse())
     {
-        <h2>@item.Title</h2>
-        <h6>@item.TimePosted</h6>
-        @if(item.TimeEdited != item.TimePosted)
+
+
+        @if (SignInManager.IsSignedIn(User))
         {
-            <h6>Edited at @item.TimeEdited</h6>
+    <div class="w3-right">
+        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+        <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a> |
+        <a asp-page="./AllPosts">Back to All</a>
+    </div>
         }
         <div>
-            Admin abilities
-            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-        </div>
-        <div class="w3-container">
-            @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Body))
+            <a asp-page="./Details" asp-route-id="@item.Id" class="w3-center"><h2>@item.Title</h2></a>
+            @{
+                String Edited = "";
+
+                if (item.TimeEdited.CompareTo(item.TimePosted) > 0)
+                {
+                    Edited = "Updated: " + item.TimeEdited.ToString("g") + " US Central";
+                }
+            }
+            <div class="w3-margin-bottom">
+                <em>@item.TimePosted.ToString("g") US Central</em><br />
+                <em>@Edited</em>
+            </div>
+            <div id="PostBody @item.Id">
+                @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Body))
+            </div>
         </div>
     }
 </div>

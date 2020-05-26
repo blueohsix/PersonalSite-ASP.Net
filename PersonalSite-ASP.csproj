@@ -14,17 +14,8 @@
     <Compile Remove="Migrations\20200525061724_AddedIdentity.Designer.cs" />
     <Compile Remove="Migrations\20200525062604_AddedIdentity.cs" />
     <Compile Remove="Migrations\20200525062604_AddedIdentity.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="docs\resources\favicon.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="docs\resources\favicon.ico">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
+    <Compile Remove="Migrations\20200526025239_HookedUpToAWS.cs" />
+    <Compile Remove="Migrations\20200526025239_HookedUpToAWS.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

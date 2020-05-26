@@ -30,22 +30,28 @@ namespace PersonalSite_ASP
             services.AddRazorPages();
 
             services.AddDbContext<PersonalSite_ASPContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("PersonalSite_ASPContext")));
+                    //options.UseSqlServer(Configuration.GetConnectionString("PersonalSite_ASPContext")));
+            options.UseSqlServer(Configuration.GetConnectionString("PersonalSite_ASPLive")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                .AddDefaultTokenProviders()
                .AddEntityFrameworkStores<PersonalSite_ASPContext>()
                .AddDefaultUI();
 
-
-            services.AddAuthentication().AddGitHub(options =>
+            services.AddRazorPages(options =>
             {
-                //TODO Add Back GitHub tokens
-                options.ClientId = "";
-                options.ClientSecret = "";
+                options.Conventions.AllowAnonymousToPage("/");
+                options.Conventions.AllowAnonymousToPage("/Contact");
+                options.Conventions.AllowAnonymousToPage("/Blog/");
+                options.Conventions.AllowAnonymousToPage("/Blog/Index");
+                options.Conventions.AllowAnonymousToPage("/Blog/Details");
+                options.Conventions.AuthorizePage("/Blog/AllPosts");
+                options.Conventions.AuthorizePage("/Blog/Create");
+                options.Conventions.AuthorizePage("/Blog/Delete");
+                options.Conventions.AuthorizePage("/Blog/Edit");
+                options.Conventions.AuthorizeFolder("/Identity");
+                options.Conventions.AllowAnonymousToPage("/Identity/Login");
             });
-
-            services.AddRazorPages();
 
         }
 
